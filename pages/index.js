@@ -21,14 +21,10 @@ export default function Home() {
 		fetch('./.netlify/functions/saveandconfirm', {
 			method: 'POST',
 			body: JSON.stringify(body),
-		})
-			.then((resp) => {
-				alert('Confirmed successfully!');
-				setDescription('');
-			})
-			.catch((e) => {
-				alert('Error confirming details!');
-			});
+		}).then((_) => {
+			alert('Confirmed successfully!');
+			setValue({ ...value, name: '', email: '' });
+		});
 	};
 	return (
 		<div>

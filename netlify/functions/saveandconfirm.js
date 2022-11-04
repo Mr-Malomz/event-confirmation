@@ -7,15 +7,15 @@ exports.handler = async function (event, context, callback) {
 		email: bodyRequest.email,
 	};
 
-	// //save user on the database
-	// await fetch(`${process.env.XATA_URL}:main/tables/confirmed/data`, {
-	// 	method: 'POST',
-	// 	headers: {
-	// 		'Content-Type': 'application/json',
-	// 		Authorization: `Bearer ${process.env.XATA_API_KEY}`,
-	// 	},
-	// 	body: JSON.stringify(body),
-	// });
+	//save user on the database
+	await fetch(`${process.env.XATA_URL}:main/tables/confirmed/data`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${process.env.XATA_API_KEY}`,
+		},
+		body: JSON.stringify(body),
+	});
 
 	//send confirmation email
 	await fetch(`${process.env.URL}/.netlify/functions/emails/confirmed`, {
