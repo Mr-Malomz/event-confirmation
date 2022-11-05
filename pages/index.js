@@ -6,12 +6,14 @@ export default function Home() {
 		name: '',
 		email: '',
 	});
+	const [isLoading, setIsloading] = useState(false);
 
 	const handleChange = (e) => {
 		setValue({ ...value, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = (e) => {
+		setIsloading(true);
 		e.preventDefault();
 		const body = {
 			name: value.name,
@@ -24,6 +26,7 @@ export default function Home() {
 		}).then((_) => {
 			alert('Confirmed successfully!');
 			setValue({ ...value, name: '', email: '' });
+			setIsloading(false);
 		});
 	};
 	return (
@@ -71,7 +74,10 @@ export default function Home() {
 									onChange={handleChange}
 								/>
 							</fieldset>
-							<button className='text-sm text-white px-8 py-2 rounded-sm bg-teal-600 hover:bg-teal-700'>
+							<button
+								className='text-sm text-white px-8 py-2 rounded-sm bg-teal-600 hover:bg-teal-700'
+								disabled={isLoading}
+							>
 								Submit
 							</button>
 						</form>
